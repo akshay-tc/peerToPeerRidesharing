@@ -55,6 +55,7 @@ export default function DriverRideRequests() {
             ])
 
             console.log("contract call success", data);
+            alert("Ride organized Successfully");
         } catch(error) {
             console.log("contract call failure", error);
         }
@@ -63,10 +64,10 @@ export default function DriverRideRequests() {
 
 
   const handleUpload = async () => {
-    if(address == undefined){
-      alert("Please connect your wallet");
-      return;
-    }
+    // if(address == undefined){
+    //   alert("Please connect your wallet");
+    //   return;
+    // }
     const ride = {
       startLocation,
       destination,
@@ -84,6 +85,7 @@ export default function DriverRideRequests() {
     set(ref(db, 'ride/' + id), {ride}).then(() => {
       console.log("Data saved successfully!");
       publish();
+      
     }).catch((error) => { 
       console.error("Error writing document: ", error);
     });
