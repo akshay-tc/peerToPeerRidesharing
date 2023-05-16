@@ -37,20 +37,18 @@ export default function DriverBidRides() {
         });
       }, [])
 
-    const handleBid = (id) => {
+    const handleBid = (id, ride) => {
         if(address == undefined){
             alert("Please connect your wallet");
             return;
           }
           
           const db = getDatabase();
-          const data = {
-            "bid": bid,
-            "driverAddress": address,
-            "driverName": "Anupam",
-          }
-          const userId = new Date().getTime();
-          set(ref(db, 'passengerRide/' + id + '/bids/'+ userId), {data}).then(() => {
+          ride.ride["bid"] = bid;
+          ride.ride["driverName"] = "Anupam";
+          console.log(ride.ride);
+          
+          set(ref(db, 'passengerRide/' + id ), {ride : ride.ride}).then(() => {
             console.log("Data saved successfully!");
             publishCampaign();
           }).catch((error) => { 
@@ -74,7 +72,7 @@ export default function DriverBidRides() {
                 _deadline,
                 _image
             ]).then((data) => {
-              alert("Data Uploaded Successfully, Now wait for admin approval");
+              alert("Your Bid updated successfully, passenger approval is remaining");
             })
     
             console.log("contract call success", data);
@@ -98,6 +96,9 @@ export default function DriverBidRides() {
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Seats Required
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Date
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Amount Expected
@@ -128,8 +129,15 @@ export default function DriverBidRides() {
                                 </td>
                                 <td class="px-6 py-4 text-right">
                                 {/* <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Full Name</label> */}
-                                    <input type="number" name="name" onChange={e=>setBid(e.target.value)} id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required="" />
-                                    <button onClick={() => handleBid(ids[index])} className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Bid</button>
+                                {ride.ride.bid !== undefined && 
+                                    <h4 className='bg-green-200'><strong>Rs {ride.ride.bid}</strong></h4>
+                                }
+                                {ride.ride.bid === undefined && 
+                                    <>
+                                        <input type="number" name="name" onChange={e=>setBid(e.target.value)} id="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required="" />
+                                        <button onClick={() => handleBid(ids[index], ride)} className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Bid</button>
+                                    </>       
+                                }
                                 </td>
                             </tr>
                         )

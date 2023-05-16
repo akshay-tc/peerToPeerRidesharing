@@ -20,7 +20,7 @@ export default function PassengerDashboard() {
       setPhoneNumber(data.phoneNumber);
       setDob(data.dob);
       setAadhar(data.Aadhar);
-      console.log(data);
+      // console.log(data);
     });
   }, []);
 
@@ -28,7 +28,7 @@ export default function PassengerDashboard() {
     <div>
           <section className="bg-gray-50 dark:bg-gray-900">
           <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto ">
-            <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+            <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
               Your Profile
             </a>
             <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -74,7 +74,7 @@ export default function PassengerDashboard() {
                     <div className="flex items-center justify-center w-full">
 
                       <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6">
                           <img src="/dl-fr-500x500.webp" alt="" />
                           {/* <svg aria-hidden="true" className="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                           <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
