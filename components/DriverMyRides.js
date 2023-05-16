@@ -4,7 +4,21 @@ import app from "../firebaseConfig";
 import { getDatabase ,ref, set, onValue} from "firebase/database";
 
 export default function DriverMyRides() {
+  /**
+   * Start Initials
+   */
+
     const [rides, setRides] = React.useState([]);
+    const [offerText,setOfferText] = useState("Accept Offer")
+    const [offerTextOne,setOfferTextOne] = useState("Accept Offer")
+
+  /**
+   * End Initials
+   */  
+
+  /**
+   * Start Lifecycle Methods
+   */
 
     useEffect(() => {
         const db = getDatabase();
@@ -18,12 +32,31 @@ export default function DriverMyRides() {
         });
       }, [])
 
+  /**
+   * Start Lifecycle Methods
+   */
+  
+  /**
+   * Start Methods 
+   */
+    const offerSetMethod = ()=>{
+      alert("Do you want to Accept the Offer")
+      setOfferText("Accepted")
+    }
+
+    const offerSetMethodOne = ()=>{
+      alert("Do you want to Accept the Offer")
+      setOfferTextOne("Accepted")
+    }
+  /**
+   * End Methods 
+   */
   return (
     <div>
          <div className='m-4'>
         <h1 className="text-xl font-bold leading-none text-gray-900 dark:text-white">Rides Requested</h1>
-        {rides && rides.map((ride, id) => (
-
+        {rides && rides.map((ride, id) =>
+        (           
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -94,7 +127,8 @@ export default function DriverMyRides() {
                         Seats: 2
                       </div>
                       <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                      <button className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Accept Offer</button>
+                      {/* @ts-ignore */}
+                      <button className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg" onClick={offerSetMethod}>{offerText}</button>
                       </div>
                     </div>
                   </li>
@@ -115,7 +149,7 @@ export default function DriverMyRides() {
                         seats: 1
                       </div>
                       <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                      <button className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">Accept Offer</button>
+                      <button className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg" onClick={offerSetMethodOne}>{offerTextOne}</button>
                       </div>
                     </div>
                   </li>

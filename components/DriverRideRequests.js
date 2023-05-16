@@ -72,7 +72,10 @@ export default function DriverRideRequests() {
       destination,
       seatsAvailable,
       date,
-      amount
+      amount,
+      createdBy:"Adnan",
+      claimStatus:"Claim This Ride",
+      claimedBy:""
     }
     // upload data to firebase
     console.log(ride);
